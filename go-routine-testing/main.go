@@ -12,9 +12,9 @@ import (
 
 func isAlphanumeric(s string) bool {
 	for _, r := range s {
-		var isLetter bool = unicode.IsLetter(r)
-		var isDigit bool = unicode.IsDigit(r)
-		fmt.Printf("CHECK %c | isletter: %t isDigit: %t\n", r, isLetter, isDigit)
+		// var isLetter bool = unicode.IsLetter(r)
+		// var isDigit bool = unicode.IsDigit(r)
+		// fmt.Printf("CHECK %c | isletter: %t isDigit: %t\n", r, isLetter, isDigit)
 
 		if !unicode.IsLetter(r) {
 			if !unicode.IsDigit(r) {
@@ -38,7 +38,7 @@ func generateMacAddress() string {
 
 	mac = append(mac, buf[0], buf[1], buf[2], buf[3], buf[4], buf[5])
 
-	fmt.Printf("Here is the generated mac address string %s", mac.String())
+	// fmt.Printf("Here is the generated mac address string %s\n", mac.String())
 	return mac.String()
 }
 
@@ -51,15 +51,14 @@ func convertMacAddress(maybeMacAddress string) {
 	var maybeMacAddressClean string
 
 	// fmt.Scanln(&maybeMacAddress)
-	fmt.Println("Here is the user input: ", maybeMacAddress)
 
 	replacer := strings.NewReplacer("[", "", ".", "", ":", "", "]", "")
 	maybeMacAddressClean = replacer.Replace(maybeMacAddress)
 
-	fmt.Println("Here is the user input with out undesirable punct: ", maybeMacAddressClean)
+	// fmt.Println("Here is the user input with out undesirable punct: ", maybeMacAddressClean)
 
 	var maybeMacAddressCleanLower = strings.ToLower(maybeMacAddressClean)
-	fmt.Println("Here is the user input with out undesirable punct and in lowercase: ", maybeMacAddressCleanLower)
+	// fmt.Println("Here is the user input with out undesirable punct and in lowercase: ", maybeMacAddressCleanLower)
 
 	inputIsAlphanumeric = isAlphanumeric(maybeMacAddressCleanLower)
 	if !inputIsAlphanumeric == true {
@@ -72,7 +71,7 @@ func convertMacAddress(maybeMacAddress string) {
 	var add int
 	var delimCounter int
 	var buffer bytes.Buffer
-	var delim string = ":"
+	var delim string = "-"
 
 	for _, c := range maybeMacAddressClean {
 		if delimCounter == 2 {
@@ -88,7 +87,7 @@ func convertMacAddress(maybeMacAddress string) {
 		}
 	}
 
-	fmt.Printf("Here is the final string: %s\n", buffer.String())
+	fmt.Printf("CONVERT_OK | original: %s converted: %s\n", maybeMacAddress, buffer.String())
 
 }
 
